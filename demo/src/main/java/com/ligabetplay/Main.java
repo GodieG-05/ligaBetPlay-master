@@ -5,10 +5,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.ligabetplay.models.Emparejamiento;
+import com.ligabetplay.models.EmparejamientoDAO;
 import com.ligabetplay.models.Equipo;
+import com.ligabetplay.models.EquipoDAO;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Equipo> equipos = new ArrayList<Equipo>();
+        EquipoDAO equipoDAO = new EquipoDAO();
         Scanner sc = new Scanner(System.in);
         String menu = """
                 ************************
@@ -51,7 +54,7 @@ public class Main {
                                     System.out.println("El equipo ya existe");
                                 } else {
                                     Equipo myTeam = new Equipo(nombreEquipo, 0,0,0,0,0,0,0);
-                                    equipos.add(myTeam);                                    
+                                    equipoDAO.createEquipo(myTeam);;                                    
                                 };
                                 if (equipos.size()%2 == 0){
                                     tamañoListaEquipos = false;
@@ -75,9 +78,11 @@ public class Main {
                         System.out.print("\033[H\033[2J");
                         System.out.flush();
                         ArrayList<Emparejamiento> emparejamientos = new ArrayList<Emparejamiento>();
+                        EmparejamientoDAO emparejamientoDAO = new EmparejamientoDAO();
                         for (int i = 0; i < equipos.size() -1; i++){
                             for (int j = i+1; j < equipos.size(); j++){
-                                emparejamientos.add(new Emparejamiento(equipos.get(i), equipos.get(j)));
+                               Emparejamiento emparejamiento = new Emparejamiento(equipos.get(i), equipos.get(j));
+                               emparejamientoDAO.createEmparejamiento(emparejamiento);
                             }
                         }   
                         emparejamientos.forEach(emparejamiento ->{

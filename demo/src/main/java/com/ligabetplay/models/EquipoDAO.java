@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EquipoDAO {
-    private static final String FILE_PATH = "equioos.json";
+    private static final String FILE_PATH = "equipos.json";
     private List<Equipo> equipos;
     private Gson gson;
 
